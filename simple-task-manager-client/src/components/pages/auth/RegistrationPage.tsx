@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 import LockOpenIcon from '@mui/icons-material/LockOpen'
 import { useMutation } from '@tanstack/react-query'
 import { AuthService } from '../../../services/AuthService.ts'
-import { registerData } from '../../../types/ServicesTypes.ts'
+import { registerData } from '../../../types/authTypes.ts'
 
 export const RegistrationPage = () => {
   const {

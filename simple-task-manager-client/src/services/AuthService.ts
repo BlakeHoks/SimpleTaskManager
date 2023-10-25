@@ -1,6 +1,6 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
-import { loginData, registerData } from '../types/ServicesTypes.ts'
+import { loginData, registerData } from '../types/authTypes.ts'
 
 export const AuthService = {
   async getUserProfile() {
