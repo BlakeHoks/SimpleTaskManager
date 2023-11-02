@@ -6,6 +6,7 @@ import LockOpenIcon from '@mui/icons-material/LockOpen'
 import { useMutation } from '@tanstack/react-query'
 import { AuthService } from '../../../services/AuthService.ts'
 import { registerData } from '../../../types/authTypes.ts'
+import LoginIcon from '@mui/icons-material/Login'
 
 export const RegistrationPage = () => {
   const {
@@ -34,7 +35,7 @@ export const RegistrationPage = () => {
         <form autoComplete={'off'} onSubmit={handleSubmit(onSubmit)}>
           <Chip
             icon={<LockOpenIcon />}
-            label="Login"
+            label="Registration"
             variant="outlined"
             color="primary"
             sx={{ mt: 2 }}
@@ -80,6 +81,7 @@ export const RegistrationPage = () => {
             type={'submit'}
             variant="outlined"
             color={'primary'}
+            startIcon={<LoginIcon />}
             sx={{ mt: 1, mb: 1 }}
           >
             Создать

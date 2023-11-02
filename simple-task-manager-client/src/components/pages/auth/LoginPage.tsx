@@ -1,11 +1,13 @@
 import { Button, Chip, Paper, TextField } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import styles from './auth.module.scss'
 import { useForm } from 'react-hook-form'
 import LockOpenIcon from '@mui/icons-material/LockOpen'
+import LoginIcon from '@mui/icons-material/Login'
 import { useMutation } from '@tanstack/react-query'
 import { AuthService } from '../../../services/AuthService.ts'
 import { loginData } from '../../../types/authTypes.ts'
+//import { useAuth } from '../../../hooks/UseAuth.ts'
 
 export const LoginPage = () => {
   const {
@@ -19,8 +21,16 @@ export const LoginPage = () => {
     },
   })
 
+  const nav = useNavigate()
+  //const {logIn} = useAuth()
+
   const { mutate } = useMutation({
     mutationFn: (data: loginData) => AuthService.login(data),
+    onSuccess: () => {
+      //logIn(data.token)
+      nav('/')
+      console.log('Auth')
+    },
   })
 
   const onSubmit = (data: loginData) => {
@@ -64,6 +74,7 @@ export const LoginPage = () => {
             type={'submit'}
             variant="outlined"
             color={'primary'}
+            startIcon={<LoginIcon />}
             sx={{ mt: 1, mb: 1 }}
           >
             Войти
