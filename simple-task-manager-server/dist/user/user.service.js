@@ -8,40 +8,51 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserService = void 0;
 const common_1 = require("@nestjs/common");
-const create_user_dto_1 = require("./dto/create-user.dto");
 const prisma_service_1 = require("../prisma.service");
 let UserService = class UserService {
     constructor(prisma) {
         this.prisma = prisma;
     }
-    create(createUserDto) {
+    async create(dto) {
         return this.prisma.user.create({
-            CreateUserDto: create_user_dto_1.CreateUserDto
+            data: dto,
         });
-    }
-    findAll() {
-        return `This action returns all user`;
     }
     findOne(id) {
         return this.prisma.user.findUnique({
             where: {
-                id
-            }
+                id,
+            },
+        });
+    }
+    findByEmail(email) {
+        return this.prisma.user.findUnique({
+            where: {
+                email,
+            },
         });
     }
     update(id, updateUserDto) {
         return `This action updates a #${id} user`;
     }
-    remove(id) {
-        return `This action removes a #${id} user`;
+    delete(id) {
+        return this.prisma.user.delete({
+            where: {
+                id,
+            },
+        });
     }
 };
 exports.UserService = UserService;
 exports.UserService = UserService = __decorate([
     (0, common_1.Injectable)(),
+    __param(0, (0, common_1.Inject)((0, common_1.forwardRef)(() => prisma_service_1.PrismaService))),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService])
 ], UserService);
 //# sourceMappingURL=user.service.js.map

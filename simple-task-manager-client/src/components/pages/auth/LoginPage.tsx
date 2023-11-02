@@ -7,7 +7,7 @@ import LoginIcon from '@mui/icons-material/Login'
 import { useMutation } from '@tanstack/react-query'
 import { AuthService } from '../../../services/AuthService.ts'
 import { loginData } from '../../../types/authTypes.ts'
-//import { useAuth } from '../../../hooks/UseAuth.ts'
+import { useAuth } from '../../../hooks/UseAuth.ts'
 
 export const LoginPage = () => {
   const {
@@ -22,14 +22,13 @@ export const LoginPage = () => {
   })
 
   const nav = useNavigate()
-  //const {logIn} = useAuth()
+  const { logIn } = useAuth()
 
   const { mutate } = useMutation({
     mutationFn: (data: loginData) => AuthService.login(data),
-    onSuccess: () => {
-      //logIn(data.token)
+    onSuccess: (data) => {
+      logIn(data.access_token)
       nav('/')
-      console.log('Auth')
     },
   })
 

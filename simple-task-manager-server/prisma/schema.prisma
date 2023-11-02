@@ -18,17 +18,19 @@ enum Status {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  name  String?
-  email String  @unique
-  posts Task[]
+  id       Int     @id @default(autoincrement())
+  name     String?
+  email    String  @unique
+  password String
+  posts    Task[]
 }
 
 model Task {
-  id       Int     @id @default(autoincrement())
-  status   String  @default("created")
+  id       Int       @id @default(autoincrement())
+  status   String    @default("created")
   title    String
   content  String?
-  author   User?   @relation(fields: [authorId], references: [id])
+  date     DateTime?
+  author   User?     @relation(fields: [authorId], references: [id])
   authorId Int?
 }

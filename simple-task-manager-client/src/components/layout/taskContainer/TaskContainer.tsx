@@ -14,7 +14,7 @@ export const TaskContainer = () => {
         <TaskCard
           key={num}
           title={task.title}
-          description={task.description}
+          content={task.content}
           date={task.date}
         />
       ))}
