@@ -13,17 +13,16 @@ import { Layout } from './components/layout/Layout.tsx'
 import { ErrorPage } from './components/pages/error/ErrorPage.tsx'
 import { RegistrationPage } from './components/pages/auth/RegistrationPage.tsx'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { RequireAuth } from './components/layout/authLayer/RequireAuth.tsx'
+import { Profile } from './components/pages/profile/Profile.tsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
-      <Route index element={<HomePage />} />
-
-      {/*<Route element={<RequireAuth />}>
+      <Route element={<RequireAuth />}>
+        <Route index element={<HomePage />} />
         <Route path="profile" element={<Profile />} />
-        <Route path="ad/create" element={<AdCreate />} />
       </Route>
-      */}
       <Route path="login" element={<LoginPage />} />
       <Route path="register" element={<RegistrationPage />} />
       <Route path="*" element={<ErrorPage />} />
